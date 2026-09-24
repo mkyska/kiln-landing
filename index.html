@@ -1,59 +1,948 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en-CA">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Kiln ships small, useful tools for founders and small businesses in a week.">
-  <title>Kiln — Small tools, shipped</title>
+  <meta name="description" content="Kiln builds scrapers, bots, dashboards, and automations for founders and SMBs — fixed-price AI build sprints, scoped in writing, shipped in days.">
+  <meta name="theme-color" content="#f7f5f1">
+  <meta property="og:title" content="Kiln — Fixed-price AI build sprints">
+  <meta property="og:description" content="Ship a working tool in days. Scrapers, bots, dashboards, and automations for founders and small businesses. Clear scope. Fixed price. Written handoff.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <title>Kiln — Fixed-price AI build sprints for founders &amp; SMBs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231c1b19'/%3E%3Cpath d='M8 22V10h3.2l4.1 7.4L19.4 10H22.6v12h-2.7v-7.1l-3.9 6.5h-1.4l-3.9-6.5V22H8z' fill='%23f7f5f1'/%3E%3C/svg%3E">
   <style>
-    :root { --bg:#0d0f10; --panel:#15191b; --line:#293034; --text:#f2f4f3; --muted:#a8b0ae; --accent:#d8f36a; --accent-ink:#11140e; }
-    * { box-sizing:border-box; }
-    body { margin:0; background:var(--bg); color:var(--text); font:16px/1.6 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
-    .wrap { width:min(1080px,calc(100% - 40px)); margin:0 auto; }
-    header { padding:28px 0; display:flex; justify-content:space-between; align-items:center; }
-    .mark { color:var(--text); font-weight:750; letter-spacing:.08em; text-decoration:none; }
-    .status { color:var(--muted); font-size:.85rem; }
-    main { padding:72px 0 100px; }
-    .eyebrow { color:var(--accent); font-size:.8rem; font-weight:700; letter-spacing:.13em; text-transform:uppercase; }
-    h1 { max-width:760px; margin:16px 0 22px; font-size:clamp(2.8rem,8vw,6.4rem); line-height:.98; letter-spacing:-.06em; }
-    .lead { max-width:620px; color:var(--muted); font-size:1.18rem; }
-    .cta { display:inline-block; margin-top:26px; padding:13px 19px; border-radius:7px; background:var(--accent); color:var(--accent-ink); font-weight:750; text-decoration:none; }
-    .note { color:var(--muted); font-size:.82rem; margin-top:10px; }
-    section { margin-top:92px; }
-    h2 { font-size:1.7rem; letter-spacing:-.03em; margin:0 0 20px; }
-    .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
-    .card { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:24px; display:flex; flex-direction:column; }
-    .card h3 { margin:0 0 6px; font-size:1.15rem; }
-    .price { color:var(--accent); font-size:1.45rem; font-weight:750; margin:8px 0 14px; }
-    .card p { color:var(--muted); margin:0 0 16px; }
-    ul { color:var(--muted); padding-left:19px; margin:0; }
-    li { margin:6px 0; }
-    .closing { border-top:1px solid var(--line); padding-top:28px; max-width:700px; }
-    footer { border-top:1px solid var(--line); padding:24px 0 36px; color:var(--muted); font-size:.85rem; }
-    @media (max-width:720px) { .wrap { width:min(100% - 28px,560px); } header { padding:20px 0; } .status { display:none; } main { padding-top:48px; } section { margin-top:64px; } .grid { grid-template-columns:1fr; } h1 { font-size:clamp(3rem,16vw,5rem); } }
+    :root {
+      --bg: #f7f5f1;
+      --bg-elevated: #ffffff;
+      --ink: #1c1b19;
+      --ink-soft: #3d3a35;
+      --muted: #6b6660;
+      --line: #e4dfd6;
+      --line-strong: #d0c9bc;
+      --accent: #2a4a3c;
+      --accent-hover: #1e382c;
+      --accent-soft: #e8f0eb;
+      --warm: #c45c26;
+      --shadow: 0 1px 2px rgba(28, 27, 25, 0.04), 0 8px 24px rgba(28, 27, 25, 0.06);
+      --shadow-lg: 0 2px 4px rgba(28, 27, 25, 0.04), 0 16px 40px rgba(28, 27, 25, 0.08);
+      --radius: 12px;
+      --radius-sm: 8px;
+      --font: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+      --max: 1120px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font);
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a { color: var(--accent); text-underline-offset: 3px; }
+    a:hover { color: var(--accent-hover); }
+    img, svg { display: block; max-width: 100%; }
+
+    .wrap {
+      width: min(var(--max), calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    /* ——— Nav ——— */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(247, 245, 241, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 0;
+      gap: 1.5rem;
+    }
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      text-decoration: none;
+      color: var(--ink);
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: 0.02em;
+    }
+    .logo-mark {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      background: var(--ink);
+      color: var(--bg);
+      display: grid;
+      place-items: center;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--ink-soft);
+      font-size: 0.9375rem;
+      font-weight: 500;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.55rem 1rem;
+      background: var(--ink);
+      color: var(--bg) !important;
+      border-radius: 999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.15s, transform 0.15s;
+    }
+    .nav-cta:hover { background: var(--accent); color: #fff !important; }
+
+    /* ——— Buttons ——— */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.85rem 1.35rem;
+      border-radius: 999px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1.5px solid transparent;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+    }
+    .btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 1px 0 rgba(255,255,255,0.12) inset, 0 4px 14px rgba(42, 74, 60, 0.25);
+    }
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--ink);
+      border-color: var(--line-strong);
+    }
+    .btn-secondary:hover {
+      background: var(--bg-elevated);
+      border-color: var(--ink);
+      color: var(--ink);
+    }
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    /* ——— Hero ——— */
+    .hero {
+      padding: 4.5rem 0 5rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 0 0 1.25rem;
+      padding: 0.35rem 0.75rem 0.35rem 0.45rem;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .hero h1 {
+      margin: 0 0 1.25rem;
+      max-width: 14ch;
+      font-family: var(--serif);
+      font-size: clamp(2.75rem, 6.5vw, 4.35rem);
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+    .hero-lead {
+      margin: 0 0 2rem;
+      max-width: 36rem;
+      font-size: 1.2rem;
+      color: var(--ink-soft);
+      line-height: 1.6;
+    }
+    .hero-meta {
+      margin-top: 1.5rem;
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 3.5rem;
+      align-items: end;
+    }
+    .hero-panel {
+      background: var(--bg-elevated);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.75rem;
+    }
+    .hero-panel h2 {
+      margin: 0 0 1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .stat-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .stat-list li {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.85rem;
+      align-items: start;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .stat-list li:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    .stat-num {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      line-height: 1;
+      color: var(--warm);
+      min-width: 1.5rem;
+    }
+    .stat-list strong {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.15rem;
+    }
+    .stat-list span {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    /* ——— Sections ——— */
+    section {
+      padding: 5rem 0;
+    }
+    .section-head {
+      max-width: 36rem;
+      margin-bottom: 2.75rem;
+    }
+    .section-label {
+      display: block;
+      margin-bottom: 0.65rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .section-head h2,
+    .section-title {
+      margin: 0 0 0.85rem;
+      font-family: var(--serif);
+      font-size: clamp(1.9rem, 3.5vw, 2.55rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--ink);
+    }
+    .section-head p {
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: 1.05rem;
+    }
+
+    /* ——— How it works ——— */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+      counter-reset: step;
+    }
+    .step {
+      position: relative;
+      background: var(--bg-elevated);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.35rem 1.6rem;
+      box-shadow: var(--shadow);
+    }
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      margin-bottom: 1rem;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+    .step h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .step p {
+      margin: 0;
+      font-size: 0.925rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* ——— What we build ——— */
+    .build-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.15rem;
+    }
+    .build-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.6rem 1.45rem;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .build-card:hover {
+      border-color: var(--line-strong);
+      box-shadow: var(--shadow);
+    }
+    .build-icon {
+      width: 36px;
+      height: 36px;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      display: grid;
+      place-items: center;
+      color: var(--accent);
+    }
+    .build-icon svg { width: 18px; height: 18px; }
+    .build-card h3 {
+      margin: 0 0 0.4rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+    .build-card p {
+      margin: 0;
+      font-size: 0.925rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* ——— Pricing ——— */
+    .pricing {
+      background: linear-gradient(180deg, transparent 0%, rgba(228, 223, 214, 0.35) 100%);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .price-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      align-items: stretch;
+    }
+    .price-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      background: var(--bg-elevated);
+      border: 1px solid var(--line);
+      border-radius: calc(var(--radius) + 2px);
+      padding: 1.85rem 1.6rem 1.7rem;
+      box-shadow: var(--shadow);
+    }
+    .price-card.featured {
+      border-color: var(--accent);
+      box-shadow: var(--shadow-lg);
+      background: #fff;
+    }
+    .badge {
+      position: absolute;
+      top: -0.7rem;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 0.28rem 0.75rem;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .price-card h3 {
+      margin: 0 0 0.35rem;
+      font-size: 1.15rem;
+      font-weight: 600;
+    }
+    .price-amount {
+      margin: 0.5rem 0 0.35rem;
+      font-family: var(--serif);
+      font-size: 2.35rem;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+    .price-amount span {
+      font-family: var(--font);
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0;
+    }
+    .price-desc {
+      margin: 0 0 1.35rem;
+      font-size: 0.925rem;
+      color: var(--muted);
+      min-height: 2.8em;
+    }
+    .price-list {
+      list-style: none;
+      margin: 0 0 1.5rem;
+      padding: 0;
+      flex: 1;
+    }
+    .price-list li {
+      position: relative;
+      padding: 0.45rem 0 0.45rem 1.45rem;
+      font-size: 0.925rem;
+      color: var(--ink-soft);
+      border-top: 1px solid var(--line);
+    }
+    .price-list li:first-child { border-top: none; }
+    .price-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.85rem;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      box-shadow: inset 0 0 0 2px var(--accent);
+    }
+    .price-card .btn { width: 100%; }
+    .price-note {
+      margin: 1.75rem 0 0;
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    /* ——— FAQ ——— */
+    .faq-list {
+      max-width: 720px;
+      margin: 0 auto;
+      border-top: 1px solid var(--line);
+    }
+    details.faq-item {
+      border-bottom: 1px solid var(--line);
+    }
+    details.faq-item summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.25rem 0.15rem;
+      cursor: pointer;
+      list-style: none;
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--ink);
+    }
+    details.faq-item summary::-webkit-details-marker { display: none; }
+    details.faq-item summary::after {
+      content: "+";
+      flex-shrink: 0;
+      width: 1.75rem;
+      height: 1.75rem;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      border: 1px solid var(--line-strong);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--muted);
+      transition: background 0.15s, color 0.15s, transform 0.15s;
+    }
+    details.faq-item[open] summary::after {
+      content: "−";
+      background: var(--ink);
+      border-color: var(--ink);
+      color: var(--bg);
+    }
+    details.faq-item summary:hover { color: var(--accent); }
+    details.faq-item summary:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+    .faq-body {
+      padding: 0 0 1.35rem;
+      color: var(--ink-soft);
+      font-size: 0.98rem;
+      line-height: 1.65;
+      max-width: 58ch;
+    }
+    .faq-body p { margin: 0; }
+
+    /* ——— CTA ——— */
+    .cta-band {
+      padding: 0 0 5rem;
+    }
+    .cta-card {
+      background: var(--ink);
+      color: var(--bg);
+      border-radius: calc(var(--radius) + 4px);
+      padding: 3.25rem 2.5rem;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+    }
+    .cta-card h2 {
+      margin: 0 0 0.75rem;
+      font-family: var(--serif);
+      font-size: clamp(1.85rem, 3.2vw, 2.4rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+    .cta-card p {
+      margin: 0 auto 1.75rem;
+      max-width: 32rem;
+      color: rgba(247, 245, 241, 0.72);
+      font-size: 1.05rem;
+    }
+    .cta-card .btn-primary {
+      background: #fff;
+      color: var(--ink);
+      box-shadow: none;
+    }
+    .cta-card .btn-primary:hover {
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+    .cta-card .btn-secondary {
+      border-color: rgba(247, 245, 241, 0.35);
+      color: #fff;
+    }
+    .cta-card .btn-secondary:hover {
+      background: rgba(247, 245, 241, 0.08);
+      border-color: #fff;
+      color: #fff;
+    }
+    .cta-card .btn-row { justify-content: center; }
+
+    /* ——— Footer ——— */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 2.5rem 0 3rem;
+    }
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .footer-brand .logo { font-size: 0.95rem; }
+    .footer-legal {
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--muted);
+      max-width: 28rem;
+      line-height: 1.55;
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .footer-links a {
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--ink-soft);
+    }
+    .footer-links a:hover { color: var(--ink); }
+
+    /* ——— Responsive ——— */
+    @media (max-width: 960px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .steps { grid-template-columns: repeat(2, 1fr); }
+      .build-grid { grid-template-columns: repeat(2, 1fr); }
+      .price-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+      .price-card.featured { order: -1; }
+    }
+    @media (max-width: 720px) {
+      .wrap { width: min(100% - 32px, var(--max)); }
+      .nav-links { display: none; }
+      .hero { padding: 3rem 0 3.5rem; }
+      .hero h1 { max-width: none; }
+      section { padding: 3.5rem 0; }
+      .steps { grid-template-columns: 1fr; }
+      .build-grid { grid-template-columns: 1fr; }
+      .cta-card { padding: 2.5rem 1.5rem; }
+      .cta-band { padding-bottom: 3.5rem; }
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header><a class="mark" href="#top">KILN</a><span class="status">quiet builds for busy teams</span></header>
-    <main id="top">
-      <div class="eyebrow">Fixed-price AI build sprints</div>
-      <h1>Ship a working tool in a week.</h1>
-      <p class="lead">Kiln builds the small software that keeps getting postponed: scrapers, bots, dashboards, one-off automations, and lightweight web utilities for founders and small businesses.</p>
-      <a class="cta" href="mailto:hire@kiln.build?subject=Kiln%20build%20sprint">Talk about a build</a>
-      <p class="note">Email is a placeholder while the sending mailbox is being connected.</p>
+  <a class="skip" href="#main" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Skip to content</a>
+  <style>.skip:focus{position:fixed;left:1rem;top:1rem;z-index:100;width:auto;height:auto;padding:0.75rem 1rem;background:#fff;border:2px solid var(--accent);border-radius:8px;overflow:visible;}</style>
 
-      <section aria-labelledby="pricing"><h2 id="pricing">Straightforward options</h2>
-        <div class="grid">
-          <article class="card"><h3>Kiln Sprint Starter</h3><div class="price">$997</div><p>One contained build for one clear job.</p><ul><li>Scraper, bot, dashboard, or single automation</li><li>Five business days</li><li>One in-scope revision round</li></ul></article>
-          <article class="card"><h3>Kiln Sprint Pro</h3><div class="price">$1,997</div><p>A larger or multi-part workflow.</p><ul><li>Connected components and integrations</li><li>Seven to ten business days</li><li>Two in-scope revision rounds</li></ul></article>
-          <article class="card"><h3>Kiln Keep</h3><div class="price">$499–$799<span style="font-size:.85rem">/mo</span></div><p>Light ongoing care for what we built.</p><ul><li>One small change per week</li><li>Monitoring and minor fixes</li><li>Monthly status note</li></ul></article>
+  <nav class="nav" aria-label="Primary">
+    <div class="wrap nav-inner">
+      <a class="logo" href="#top">
+        <span class="logo-mark" aria-hidden="true">K</span>
+        Kiln
+      </a>
+      <ul class="nav-links">
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#build">What we build</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <a class="nav-cta" href="mailto:hello@kiln.build?subject=Kiln%20sprint%20inquiry">Get in touch</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Fixed-price AI build sprints</p>
+        <h1>Ship a working tool in days, not quarters.</h1>
+        <p class="hero-lead">Kiln builds the small software founders and SMBs keep postponing — scrapers, bots, dashboards, automations, and lightweight internal tools. Clear written scope. Fixed price. Working handoff.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="mailto:hello@kiln.build?subject=Kiln%20sprint%20inquiry">Email hello@kiln.build</a>
+          <a class="btn btn-secondary" href="mailto:hello@kiln.build?subject=Book%20a%20scope%20call">Book a scope call</a>
         </div>
-      </section>
+        <p class="hero-meta">Scope agreed in writing before work starts. Prices in USD.</p>
+      </div>
+      <aside class="hero-panel" aria-label="How a sprint runs">
+        <h2>A typical sprint</h2>
+        <ol class="stat-list">
+          <li>
+            <span class="stat-num" aria-hidden="true">1</span>
+            <div>
+              <strong>Scope call</strong>
+              <span>We define the job, constraints, and success criteria in writing.</span>
+            </div>
+          </li>
+          <li>
+            <span class="stat-num" aria-hidden="true">2</span>
+            <div>
+              <strong>Build window</strong>
+              <span>5–10 business days depending on the sprint tier.</span>
+            </div>
+          </li>
+          <li>
+            <span class="stat-num" aria-hidden="true">3</span>
+            <div>
+              <strong>Handoff</strong>
+              <span>Working tool, brief notes, and in-scope revision rounds.</span>
+            </div>
+          </li>
+        </ol>
+      </aside>
+    </div>
+  </header>
 
-      <section class="closing"><h2>Useful beats impressive.</h2><p class="lead">Every sprint begins with a written scope and ends with a working handoff. No invented case studies, no inflated promises, and no open-ended backlog disguised as a fixed price.</p></section>
-    </main>
-    <footer>© Kiln · Fixed-price tools in USD · Scope first, then build.</footer>
-  </div>
+  <main id="main">
+    <section id="how" aria-labelledby="how-title">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="section-label">Process</span>
+          <h2 id="how-title" class="section-title">How it works</h2>
+          <p>Four steps from first email to a tool you can run without us in the room.</p>
+        </div>
+        <div class="steps">
+          <article class="step">
+            <span class="step-num">01</span>
+            <h3>Tell us the job</h3>
+            <p>Describe the workflow, data sources, and what “done” looks like. A short email is enough to start.</p>
+          </article>
+          <article class="step">
+            <span class="step-num">02</span>
+            <h3>Agree the scope</h3>
+            <p>We send a written scope: deliverables, timeline, assumptions, and fixed price. No work starts until you approve.</p>
+          </article>
+          <article class="step">
+            <span class="step-num">03</span>
+            <h3>We build</h3>
+            <p>Focused sprint. You get progress notes; we stay inside the agreed edges unless you expand scope in writing.</p>
+          </article>
+          <article class="step">
+            <span class="step-num">04</span>
+            <h3>Ship &amp; revise</h3>
+            <p>Working handoff, then your included revision rounds. Optional Keep for light ongoing care.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="build" aria-labelledby="build-title">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="section-label">Capabilities</span>
+          <h2 id="build-title" class="section-title">What we build</h2>
+          <p>Contained tools that remove busywork — not open-ended platforms or multi-year product roadmaps.</p>
+        </div>
+        <div class="build-grid">
+          <article class="build-card">
+            <div class="build-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h10M4 17h14"/><circle cx="18" cy="12" r="2"/></svg>
+            </div>
+            <h3>Scrapers &amp; data pulls</h3>
+            <p>Reliable extraction from websites, directories, or portals into clean sheets, databases, or APIs you already use.</p>
+          </article>
+          <article class="build-card">
+            <div class="build-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 15l2.5-3 2 1.5L15 9l2 2"/></svg>
+            </div>
+            <h3>Dashboards</h3>
+            <p>Lightweight views of the metrics that matter — sales pipelines, ops queues, inventory, or campaign spend.</p>
+          </article>
+          <article class="build-card">
+            <div class="build-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="4"/><path d="M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg>
+            </div>
+            <h3>Bots &amp; automations</h3>
+            <p>Slack or email bots, scheduled jobs, form-to-CRM flows, and glue between tools that refuse to talk to each other.</p>
+          </article>
+          <article class="build-card">
+            <div class="build-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5a1 1 0 011-1h6v16H5a1 1 0 01-1-1z"/><path d="M14 4h5a1 1 0 011 1v6h-6V4z"/><path d="M14 14h6v4a1 1 0 01-1 1h-5v-5z"/></svg>
+            </div>
+            <h3>Internal utilities</h3>
+            <p>Small web apps for quoting, intake, approvals, or handoffs — useful on day one, not a redesign of your stack.</p>
+          </article>
+          <article class="build-card">
+            <div class="build-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7h8M8 12h5"/><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 17h3"/></svg>
+            </div>
+            <h3>Report generators</h3>
+            <p>Recurring PDF or spreadsheet packs from messy sources — client updates, weekly ops digests, compliance dumps.</p>
+          </article>
+          <article class="build-card">
+            <div class="build-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 4.5-3.2 7.8-8 9-4.8-1.2-8-4.5-8-9V7l8-4z"/><path d="M9.5 12l1.8 1.8 3.7-3.8"/></svg>
+            </div>
+            <h3>Integrations</h3>
+            <p>Connect Stripe, Airtable, Sheets, Notion, Shopify, or custom APIs so data moves without copy-paste.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="pricing" id="pricing" aria-labelledby="pricing-title">
+      <div class="wrap">
+        <div class="section-head" style="margin-left:auto;margin-right:auto;text-align:center;">
+          <span class="section-label">Pricing</span>
+          <h2 id="pricing-title" class="section-title">Straightforward sprints</h2>
+          <p>Fixed prices. Written scope. No invented urgency. Pick the tier that matches the size of the job.</p>
+        </div>
+        <div class="price-grid">
+          <article class="price-card">
+            <h3>Sprint Starter</h3>
+            <p class="price-amount">$997</p>
+            <p class="price-desc">One contained build for one clear job.</p>
+            <ul class="price-list">
+              <li>Scraper, bot, dashboard, or single automation</li>
+              <li>5 business days</li>
+              <li>One in-scope revision round</li>
+              <li>Written scope before kickoff</li>
+              <li>Working handoff with brief notes</li>
+            </ul>
+            <a class="btn btn-secondary" href="mailto:hello@kiln.build?subject=Sprint%20Starter%20inquiry">Start with Starter</a>
+          </article>
+
+          <article class="price-card featured" aria-labelledby="pro-title">
+            <span class="badge">Most popular</span>
+            <h3 id="pro-title">Sprint Pro</h3>
+            <p class="price-amount">$1,997</p>
+            <p class="price-desc">Larger or multi-part workflows with room for connections.</p>
+            <ul class="price-list">
+              <li>Connected components and integrations</li>
+              <li>7–10 business days</li>
+              <li>Two in-scope revision rounds</li>
+              <li>Written scope before kickoff</li>
+              <li>Working handoff with brief notes</li>
+            </ul>
+            <a class="btn btn-primary" href="mailto:hello@kiln.build?subject=Sprint%20Pro%20inquiry">Start with Pro</a>
+          </article>
+
+          <article class="price-card">
+            <h3>Keep</h3>
+            <p class="price-amount">$499–$799<span>/mo</span></p>
+            <p class="price-desc">Light ongoing care for what we already shipped.</p>
+            <ul class="price-list">
+              <li>One small change per week</li>
+              <li>Monitoring and minor fixes</li>
+              <li>Monthly status note</li>
+              <li>Available after a completed sprint</li>
+              <li>Cancel anytime with 30 days’ notice</li>
+            </ul>
+            <a class="btn btn-secondary" href="mailto:hello@kiln.build?subject=Kiln%20Keep%20inquiry">Ask about Keep</a>
+          </article>
+        </div>
+        <p class="price-note">All prices in USD. Payment terms confirmed in the written scope. Out-of-scope work is quoted separately.</p>
+      </div>
+    </section>
+
+    <section id="faq" aria-labelledby="faq-title">
+      <div class="wrap">
+        <div class="section-head" style="margin-left:auto;margin-right:auto;text-align:center;">
+          <span class="section-label">FAQ</span>
+          <h2 id="faq-title" class="section-title">Common questions</h2>
+          <p>Straight answers before you send the first email.</p>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What counts as “in scope”?</summary>
+            <div class="faq-body">
+              <p>Whatever we write down together before kickoff: deliverables, data sources, environments, and acceptance criteria. If something new appears mid-sprint, we pause and quote it rather than silently expanding the timeline.</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>Who is Kiln for?</summary>
+            <div class="faq-body">
+              <p>Founders and small-to-medium businesses who need a specific tool working soon — not a long retainer for vague “AI strategy.” If you can describe the job in a paragraph, we can usually scope it.</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>Do you take equity or open-ended retainers?</summary>
+            <div class="faq-body">
+              <p>No. Sprints are fixed-price cash engagements. Keep is a simple monthly care plan after a sprint ships. We do not trade for equity or invent backlog hours.</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>What do I need to provide?</summary>
+            <div class="faq-body">
+              <p>Access to the systems involved (or sample data if access is restricted), a point of contact who can answer questions within a business day, and written approval of the scope. Hosting and third-party API costs remain yours unless we agree otherwise.</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>What happens after handoff?</summary>
+            <div class="faq-body">
+              <p>You own the deliverable. Included revision rounds cover reasonable in-scope fixes. If you want ongoing tweaks and monitoring, Keep is optional. We are happy to document enough that your team (or another contractor) can maintain it.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <div class="cta-band">
+      <div class="wrap">
+        <div class="cta-card">
+          <h2>Ready to scope a build?</h2>
+          <p>Send a short description of the job. We reply with questions and a draft scope — or a clear no if it is not a fit.</p>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="mailto:hello@kiln.build?subject=Kiln%20sprint%20inquiry">Email hello@kiln.build</a>
+            <a class="btn btn-secondary" href="mailto:hello@kiln.build?subject=Book%20a%20scope%20call">Book a scope call</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <div class="footer-brand">
+        <a class="logo" href="#top">
+          <span class="logo-mark" aria-hidden="true">K</span>
+          Kiln
+        </a>
+        <p class="footer-legal">© 2026 Kiln · Prices in USD · Scope agreed in writing before work starts</p>
+      </div>
+      <ul class="footer-links">
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="mailto:hello@kiln.build">hello@kiln.build</a></li>
+      </ul>
+    </div>
+  </footer>
 </body>
 </html>
