@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Kiln ships small, useful tools for founders and small businesses in a week.">
+  <title>Kiln — Small tools, shipped</title>
+  <style>
+    :root { --bg:#0d0f10; --panel:#15191b; --line:#293034; --text:#f2f4f3; --muted:#a8b0ae; --accent:#d8f36a; --accent-ink:#11140e; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--bg); color:var(--text); font:16px/1.6 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    .wrap { width:min(1080px,calc(100% - 40px)); margin:0 auto; }
+    header { padding:28px 0; display:flex; justify-content:space-between; align-items:center; }
+    .mark { color:var(--text); font-weight:750; letter-spacing:.08em; text-decoration:none; }
+    .status { color:var(--muted); font-size:.85rem; }
+    main { padding:72px 0 100px; }
+    .eyebrow { color:var(--accent); font-size:.8rem; font-weight:700; letter-spacing:.13em; text-transform:uppercase; }
+    h1 { max-width:760px; margin:16px 0 22px; font-size:clamp(2.8rem,8vw,6.4rem); line-height:.98; letter-spacing:-.06em; }
+    .lead { max-width:620px; color:var(--muted); font-size:1.18rem; }
+    .cta { display:inline-block; margin-top:26px; padding:13px 19px; border-radius:7px; background:var(--accent); color:var(--accent-ink); font-weight:750; text-decoration:none; }
+    .note { color:var(--muted); font-size:.82rem; margin-top:10px; }
+    section { margin-top:92px; }
+    h2 { font-size:1.7rem; letter-spacing:-.03em; margin:0 0 20px; }
+    .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+    .card { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:24px; display:flex; flex-direction:column; }
+    .card h3 { margin:0 0 6px; font-size:1.15rem; }
+    .price { color:var(--accent); font-size:1.45rem; font-weight:750; margin:8px 0 14px; }
+    .card p { color:var(--muted); margin:0 0 16px; }
+    ul { color:var(--muted); padding-left:19px; margin:0; }
+    li { margin:6px 0; }
+    .closing { border-top:1px solid var(--line); padding-top:28px; max-width:700px; }
+    footer { border-top:1px solid var(--line); padding:24px 0 36px; color:var(--muted); font-size:.85rem; }
+    @media (max-width:720px) { .wrap { width:min(100% - 28px,560px); } header { padding:20px 0; } .status { display:none; } main { padding-top:48px; } section { margin-top:64px; } .grid { grid-template-columns:1fr; } h1 { font-size:clamp(3rem,16vw,5rem); } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header><a class="mark" href="#top">KILN</a><span class="status">quiet builds for busy teams</span></header>
+    <main id="top">
+      <div class="eyebrow">Fixed-price AI build sprints</div>
+      <h1>Ship a working tool in a week.</h1>
+      <p class="lead">Kiln builds the small software that keeps getting postponed: scrapers, bots, dashboards, one-off automations, and lightweight web utilities for founders and small businesses.</p>
+      <a class="cta" href="mailto:hire@kiln.build?subject=Kiln%20build%20sprint">Talk about a build</a>
+      <p class="note">Email is a placeholder while the sending mailbox is being connected.</p>
+
+      <section aria-labelledby="pricing"><h2 id="pricing">Straightforward options</h2>
+        <div class="grid">
+          <article class="card"><h3>Kiln Sprint Starter</h3><div class="price">$997</div><p>One contained build for one clear job.</p><ul><li>Scraper, bot, dashboard, or single automation</li><li>Five business days</li><li>One in-scope revision round</li></ul></article>
+          <article class="card"><h3>Kiln Sprint Pro</h3><div class="price">$1,997</div><p>A larger or multi-part workflow.</p><ul><li>Connected components and integrations</li><li>Seven to ten business days</li><li>Two in-scope revision rounds</li></ul></article>
+          <article class="card"><h3>Kiln Keep</h3><div class="price">$499–$799<span style="font-size:.85rem">/mo</span></div><p>Light ongoing care for what we built.</p><ul><li>One small change per week</li><li>Monitoring and minor fixes</li><li>Monthly status note</li></ul></article>
+        </div>
+      </section>
+
+      <section class="closing"><h2>Useful beats impressive.</h2><p class="lead">Every sprint begins with a written scope and ends with a working handoff. No invented case studies, no inflated promises, and no open-ended backlog disguised as a fixed price.</p></section>
+    </main>
+    <footer>© Kiln · Fixed-price tools in USD · Scope first, then build.</footer>
+  </div>
+</body>
+</html>
